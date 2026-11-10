@@ -12,4 +12,10 @@ class ContaTest {
         assertEquals(0, acc.getSaldo());
     }
 
+    @Test 
+    void novaContaIniciaComExtratoVazio(){
+        Conta acc = new Conta();
+        assertTrue(acc.getEntradas().isEmpty());
+    }
+
 }
