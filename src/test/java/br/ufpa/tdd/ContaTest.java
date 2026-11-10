@@ -85,5 +85,17 @@ class ContaTest {
     }
 
 
+    @Test
+    void saqueMaiorQueSaldoLancaExcecaoENaoAlteraEstado() {
+        Conta acc = new Conta();
+        acc.deposito(100);
+        // Verifica que lança a exceção ao tentar sacar mais do que tem
+        assertThrows(IllegalStateException.class, () -> acc.saque(150));
+        // Efeito colateral: garante que nada mudou na conta
+        assertEquals(100, acc.getSaldo());
+        assertEquals(1, acc.getEntradas().size());
+    }
+
+
 
 }

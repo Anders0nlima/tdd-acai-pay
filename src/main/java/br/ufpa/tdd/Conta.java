@@ -29,6 +29,11 @@ public class Conta {
         if (quantia <= 0){
             throw new IllegalArgumentException("A quantia para saque deve ser maior que zero.");
         }
+
+        if(quantia > this.saldo){
+            throw new IllegalStateException("Saldo insuficiente para realizar o saque");
+        }
+        
         this.saldo -= quantia;
         this.entradas.add(new Entrada("SAQUE", quantia, this.saldo));
     }
