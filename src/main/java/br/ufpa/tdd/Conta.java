@@ -33,9 +33,15 @@ public class Conta {
         if(quantia > this.saldo){
             throw new IllegalStateException("Saldo insuficiente para realizar o saque");
         }
-        
+
         this.saldo -= quantia;
         this.entradas.add(new Entrada("SAQUE", quantia, this.saldo));
+    }
+
+
+    public void transferenciaPara(Conta outra, int quantia) {
+        this.saque(quantia);
+        outra.deposito(quantia);
     }
 
 }

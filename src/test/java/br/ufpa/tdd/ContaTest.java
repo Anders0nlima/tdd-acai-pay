@@ -96,6 +96,31 @@ class ContaTest {
         assertEquals(1, acc.getEntradas().size());
     }
 
+   // bunus 
+    @Test
+    void transferenciaComSucessoAtualizaSaldosEExtratos() {
+        Conta origem = new Conta();
+        Conta destino = new Conta();
+        origem.deposito(100);
+        destino.deposito(50);
+        origem.transferenciaPara(destino, 30);
+
+        assertEquals(70, origem.getSaldo());
+        assertEquals(80, destino.getSaldo());
+
+        assertEquals(2, origem.getEntradas().size());
+        Entrada entradaOrigem = origem.getEntradas().get(1);
+        assertEquals("SAQUE", entradaOrigem.tipo());
+        assertEquals(30, entradaOrigem.valor());
+        assertEquals(70, entradaOrigem.saldoAposOperacao());
+
+        assertEquals(2, destino.getEntradas().size());
+        Entrada entradaDestino = destino.getEntradas().get(1);
+        assertEquals("DEPOSITO", entradaDestino.tipo());
+        assertEquals(30, entradaDestino.valor());
+        assertEquals(80, entradaDestino.saldoAposOperacao());
+    }
+
 
 
 }
