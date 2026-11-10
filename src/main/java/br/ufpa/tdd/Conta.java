@@ -18,6 +18,8 @@ public class Conta {
 
     public void deposito(int quantia){
         this.saldo += quantia;
+        this.entradas.add(new Entrada("DEPOSITO", quantia, this.saldo));
+    
     }
 
 }
