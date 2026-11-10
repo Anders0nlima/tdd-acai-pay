@@ -122,5 +122,44 @@ class ContaTest {
     }
 
 
+    @Test
+    void transferenciaComValorInvalidoLancaExcecaoENaoAlteraEstado() {
+        Conta origem = new Conta();
+        Conta destino = new Conta();
+        origem.deposito(100);
+        destino.deposito(50);
+        assertThrows(IllegalArgumentException.class, () -> origem.transferenciaPara(destino, 0));
+        assertThrows(IllegalArgumentException.class, () -> origem.transferenciaPara(destino, -10));
+        // Sem efeitos colaterais
+        assertEquals(100, origem.getSaldo());
+        assertEquals(50, destino.getSaldo());
+        assertEquals(1, origem.getEntradas().size());
+        assertEquals(1, destino.getEntradas().size());
+    }
+
+
+    @Test
+    void transferenciaComSaldoInsuficienteLancaExcecaoENaoAlteraEstado() {
+        Conta origem = new Conta();
+        Conta destino = new Conta();
+        origem.deposito(100);
+        destino.deposito(50);
+        assertThrows(IllegalStateException.class, () -> origem.transferenciaPara(destino, 150));
+        assertEquals(100, origem.getSaldo());
+        assertEquals(50, destino.getSaldo());
+        assertEquals(1, origem.getEntradas().size());
+        assertEquals(1, destino.getEntradas().size());
+    }
+
+    
+    @Test
+    void transferenciaParaContaNulaLancaExcecaoENaoAlteraEstado() {
+        Conta origem = new Conta();
+        origem.deposito(100);
+        assertThrows(IllegalArgumentException.class, () -> origem.transferenciaPara(null, 50));
+        assertEquals(100, origem.getSaldo());
+        assertEquals(1, origem.getEntradas().size());
+    }
+
 
 }

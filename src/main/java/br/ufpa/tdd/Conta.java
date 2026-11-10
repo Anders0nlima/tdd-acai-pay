@@ -40,6 +40,9 @@ public class Conta {
 
 
     public void transferenciaPara(Conta outra, int quantia) {
+        if (outra == null){
+            throw new IllegalArgumentException("A conta destino não pode ser nula");
+        }
         this.saque(quantia);
         outra.deposito(quantia);
     }
