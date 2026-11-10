@@ -22,4 +22,8 @@ public class Conta {
     
     }
 
+    public void saque(int quantia) {
+        this.saldo -= quantia;
+    }
+
 }
