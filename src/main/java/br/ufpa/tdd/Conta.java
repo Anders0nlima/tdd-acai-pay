@@ -16,4 +16,8 @@ public class Conta {
         return entradas;
     }
 
+    public void deposito(int quantia){
+        this.saldo += quantia;
+    }
+
 }
