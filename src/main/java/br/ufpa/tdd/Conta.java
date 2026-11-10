@@ -13,7 +13,7 @@ public class Conta {
     }
 
     public List<Entrada> getEntradas(){
-        return entradas;
+        return Collections.unmodifiableList(entradas);
     }
 
     public void deposito(int quantia){

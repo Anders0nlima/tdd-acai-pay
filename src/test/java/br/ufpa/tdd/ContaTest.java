@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.util.List;
+
 class ContaTest {
 
     @Test
@@ -57,5 +59,16 @@ class ContaTest {
     }
 
 
-    
+    @Test
+    void extratoNaoPodeSerModificadoExternamente() {
+        Conta acc = new Conta();
+        acc.deposito(100);
+        List<Entrada> extrato = acc.getEntradas();
+        assertThrows(UnsupportedOperationException.class, () -> {
+            extrato.add(new Entrada("DEPOSITO", 50, 150));
+        });
+    }
+
+
+
 }
