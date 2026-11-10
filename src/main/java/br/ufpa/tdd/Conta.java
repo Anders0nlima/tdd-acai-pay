@@ -24,6 +24,7 @@ public class Conta {
 
     public void saque(int quantia) {
         this.saldo -= quantia;
+        this.entradas.add(new Entrada("SAQUE", quantia, this.saldo));
     }
 
 }
