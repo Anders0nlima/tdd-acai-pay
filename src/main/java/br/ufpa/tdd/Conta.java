@@ -17,6 +17,9 @@ public class Conta {
     }
 
     public void deposito(int quantia){
+        if(quantia <= 0){
+            throw new IllegalArgumentException("A quantia para depósito deve ser maior que zero.");
+        }
         this.saldo += quantia;
         this.entradas.add(new Entrada("DEPOSITO", quantia, this.saldo));
     

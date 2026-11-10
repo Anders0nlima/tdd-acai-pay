@@ -69,6 +69,13 @@ class ContaTest {
         });
     }
 
+    @Test
+    void depositoComValorZeroOuNegativoLancaExcecao() {
+        Conta acc = new Conta();
+        assertThrows(IllegalArgumentException.class, () -> acc.deposito(0));
+        assertThrows(IllegalArgumentException.class, () -> acc.deposito(-50));
+    }
+
 
 
 }
