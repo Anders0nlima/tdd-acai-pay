@@ -26,6 +26,9 @@ public class Conta {
     }
 
     public void saque(int quantia) {
+        if (quantia <= 0){
+            throw new IllegalArgumentException("A quantia para saque deve ser maior que zero.");
+        }
         this.saldo -= quantia;
         this.entradas.add(new Entrada("SAQUE", quantia, this.saldo));
     }
